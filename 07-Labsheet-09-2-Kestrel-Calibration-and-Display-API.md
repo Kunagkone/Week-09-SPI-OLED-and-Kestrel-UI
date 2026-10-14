@@ -387,7 +387,7 @@ Server: Kestrel
 
 2. จากการทำ HTTP Forensics หากไม่มีการตรวจสอบเงื่อนไข `RawMax <= RawMin` ในโค้ด จะเกิด Exception ชนิดใดขึ้นในภาษา C# และส่งผลต่อการทำงานของเซิร์ฟเวอร์อย่างไร?
 ```
-
+Exception และผลทางคณิตศาสตร์: ในสูตรคำนวณ (clamped - RawMin) / (RawMax - RawMin) หาก RawMax == RawMin จะเกิดตัวหารเป็นศูนย์ ($0$)   เนื่องจากเป็นการหารด้วยชนิดข้อมูลแบบ double ใน C# จะ ไม่เกิด DivideByZeroException ทันที แต่จะเกิดค่าผลลัพธ์เป็น double.NaN (Not a Number) หรือ double.PositiveInfinityผลกระทบต่อระบบและเซิร์ฟเวอร์:เกิด Failure ในขั้นตอน JSON Serialization: เมื่อ Kestrel พยายามแปลงตัวแปรผลลัพธ์ที่เป็น NaN หรือ Infinity กลับเป็น JSON Response ส่งให้ Client ระบบ JSON Serializer (System.Text.Json) จะโยน JsonException ออกมา
 ```
 3. อธิบายสาเหตุทางเทคนิคว่าทำไมคำขอ HTTP POST ที่ไม่มี Header `Content-Type: application/json` จึงถูกปฏิเสธด้วยรหัสสถานะ `415 Unsupported Media Type`?
 ```
