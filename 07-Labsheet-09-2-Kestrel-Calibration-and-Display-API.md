@@ -391,7 +391,7 @@ Exception และผลทางคณิตศาสตร์: ในสู�
 ```
 3. อธิบายสาเหตุทางเทคนิคว่าทำไมคำขอ HTTP POST ที่ไม่มี Header `Content-Type: application/json` จึงถูกปฏิเสธด้วยรหัสสถานะ `415 Unsupported Media Type`?
 ```
-
+กลไก Model Binding และ Request Body Parsing: Minimal API ใน ASP.NET Core จะอาศัย Header Content-Type ของคำขอ HTTP เพื่อเลือกใช้ Input Formatter / Deserializer ที่เหมาะสมในการแปลง Payload ใน Body มาเป็น C# Object (เช่น CalibrationSettings หรือ DisplayMessageRequest)   สาเหตุที่เกิด 415: หากไคลเอ็นต์ไม่ได้ระบุ -H "Content-Type: application/json" ตัว Web Server (Kestrel) จะไม่ทราบรูปแบบข้อมูลที่ส่งเข้ามา จึงปฏิเสธที่จะอ่าน Body และตัดการทำงานทันทีในชั้น Middleware พร้อมตอบกลับด้วยรหัสสถานะ 415 Unsupported Media Type เพื่อป้องกันความเสียหายจากการประมวลผลข้อมูลผิดประเภท
 ```
 
 
